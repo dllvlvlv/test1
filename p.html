@@ -1,0 +1,355 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>ArcGIS JavaScript Tutorials: Add layers to a map</title>
+    <style>
+    html, body, #viewDiv {
+      padding: 0;
+      margin: 0;
+      height: 100%;
+      width: 100%;
+    }
+    #base {
+        background-image: linear-gradient(to right, #D6F9FF , #01148B);
+        /*background-image: radial-gradient(circle, #BEF4FE, #8BD2FF, #036CAD);*/
+    }
+    .esri-ui-inner-container{
+        display: none;
+    }
+    #barChart {
+        position: absolute;
+        right: 0px;
+        top: 30%;
+    }
+    </style>
+    <link rel="stylesheet" href="https://js.arcgis.com/4.15/esri/themes/light/main.css">
+    <script src="./js/incubator-echarts-master/dist/echarts.min.js"></script>
+    <script src="https://js.arcgis.com/4.15/"></script>
+    <script src="./json/point.json"></script>
+    <script>
+    require([
+      "esri/Map",
+      "esri/views/MapView",
+      "esri/views/SceneView",
+      "esri/layers/MapImageLayer",
+      "esri/Graphic",
+      "esri/geometry/Point",
+      "esri/symbols/SimpleMarkerSymbol",
+      "esri/layers/support/LabelClass",
+      "esri/symbols/TextSymbol",
+      "esri/Color",
+      "esri/symbols/Font",
+      "dojo/on",
+      "dojo/domReady!"
+    ], function(Map, MapView, SceneView, MapImageLayer, Graphic, Point,SimpleMarkerSymbol,LabelClass, TextSymbol, Color, Font,on) {
+        var markerSymbol=null;
+        var pointGraphic=null;
+        var select = null;
+        barChart();
+        var map = new Map('map',{
+            basemap: "",
+            showLabels : true
+        });
+        var view = new MapView({
+            container: "viewDiv",  
+            map: map,
+            center: [121.934072,31.281857],
+            zoom: 6     
+        });
+        // var view = new SceneView({
+        //   container: "viewDiv",
+        //   map: map,
+        //   MinZoom:3,
+        //   MaxZoom:6,
+        //   camera: {
+        //     position: {
+        //       x: 121.474072,
+        //       y: 31.301857,
+        //       z: 5000 // meters
+        //     },
+        //     tilt: 75
+        //   }
+        // });
+        var baseLayer = new MapImageLayer({
+            url: "http://localhost:6080/arcgis/rest/services/project/shanghai/MapServer"
+        });
+        //baseLayer.opacity = 0.9;
+        map.add(baseLayer);
+        for(var i in County) {
+            var point = new Point({
+                longitude: County[i].lng,
+                latitude: County[i].lat
+            });
+            markerSymbol = new SimpleMarkerSymbol({
+                style: "diamond",
+                color: [226, 251, 252],
+                size: 9,
+                outline: {
+                    color: [253, 143, 9],
+                    width: 3
+                }      
+            });
+            pointGraphic = new Graphic({
+                geometry: point,
+                symbol: markerSymbol
+            });
+            view.graphics.add(pointGraphic);
+            var textsymbol = new TextSymbol({
+                text:County[i].county,
+                color: "rgb(255, 255, 255)",
+                xoffset: 3,
+                yoffset: 3,
+                font: {  // autocasts as new Font()
+                    size: 12,
+                    //family: "Arial",
+                    // weight: "bold"
+                }
+            });
+            var graphicText = new Graphic({
+                geometry: point,
+                symbol: textsymbol
+            });
+            view.graphics.add(graphicText);
+        }
+        view.on("click",function(event){
+            if(select != null){
+                view.graphics.remove(select);
+            }
+            view.hitTest(event).then(function(response){
+                if(response.results[0]) {
+                    let graphic = response.results[0].graphic;
+                    let lng = graphic.geometry.x;
+                    let lat = graphic.geometry.y;
+                    let point = new Point({
+                        longitude: lng,
+                        latitude: lat
+                    });
+                    markerSymbol = new SimpleMarkerSymbol({
+                        style: "diamond",
+                        color: [226, 251, 252],
+                        size: 10,
+                        outline: {
+                            color: [146, 252, 139],
+                            width: 3
+                        }      
+                    });
+                    pointGraphic = new Graphic({
+                        geometry: point,
+                        symbol: markerSymbol
+                    });
+                    view.graphics.add(pointGraphic);
+                    select = pointGraphic;
+                }   
+            })
+        });
+        function barChart() {
+            var dom = document.getElementById("barChart");
+            var myChart = echarts.init(dom);
+            var app = {};
+            option = null;
+            var xAxisData = [];
+            var data1 = [];
+            var data2 = [];
+            var data3 = [];
+            var data4 = [];
+
+            for (var i = 0; i < 10; i++) {
+                xAxisData.push('Class' + i);
+                data1.push((Math.random() * 2).toFixed(2));
+                data2.push(-Math.random().toFixed(2));
+                data3.push((Math.random() * 5).toFixed(2));
+                data4.push((Math.random() + 0.3).toFixed(2));
+            }
+
+            var emphasisStyle = {
+                itemStyle: {
+                    barBorderWidth: 1,
+                    shadowBlur: 10,
+                    shadowOffsetX: 0,
+                    shadowOffsetY: 0,
+                    shadowColor: 'rgba(0,0,0,0.5)'
+                }
+            };
+
+            option = {
+                backgroundColor: 'rgba(0,0,0,0)',
+                legend: {
+                    data: ['bar', 'bar2', 'bar3', 'bar4'],
+                    left: 10,
+                    textStyle:{
+                        color:"white"
+                    }
+                },
+                // brush: {
+                //     toolbox: ['rect', 'polygon', 'lineX', 'lineY', 'keep', 'clear'],
+                //     xAxisIndex: 0
+                // },
+                // toolbox: {
+                //     feature: {
+                //         magicType: {
+                //             type: ['stack', 'tiled']
+                //         },
+                //         dataView: {}
+                //     }
+                // },
+                tooltip: {},
+                xAxis: {
+                    data: xAxisData,
+                    name: 'X Axis',
+                    axisLine: {
+                        onZero: true,
+                        lineStyle: {
+                            color: "rgb(195, 213, 254)",
+                        }
+                    },
+                    splitLine: {show: false},
+                    splitArea: {show: false},
+                    Interval: 0
+                },
+                yAxis: {
+                    inverse: true,
+                    splitLine: {show: false},
+                    splitArea: {show: false},
+                    axisLine: {
+                        lineStyle: {
+                            color: "rgb(195, 213, 254)",
+                        }
+                    },
+                    axisTick: {
+                        show: false
+                    }
+                },
+                grid: {
+                    left: '14%',
+                    right: '12%',
+                    bottom: '15%',
+                    top: '15%',
+                    containLabel: true   //保留文字距离
+                },
+                visualMap: {
+                    type: 'continuous',
+                    dimension: 1,
+                    text: ['High', 'Low'],
+                    textStyle:{
+                        color:"white"
+                    },
+                    inverse: true,
+                    itemHeight: 200,
+                    calculable: true,
+                    color:"white",
+                    min: -2,
+                    max: 6,
+                    top: 60,
+                    left: 10,
+                    inRange: {
+                        colorLightness: [0.4, 0.8]
+                    },
+                    outOfRange: {
+                        color: '#bbb'
+                    },
+                    controller: {
+                        inRange: {
+                            color: '#7487FF'
+                        }
+                    }
+                },
+                series: [
+                    {
+                        name: 'bar',
+                        type: 'bar',
+                        barWidth: 12,
+                        stack: 'one',
+                        emphasis: emphasisStyle,
+                        data: data1,
+                        itemStyle: {
+                            normal: {
+                                color: "rgba(208, 222, 253,0.7)"
+                            }
+                        }
+                    },
+                    {
+                        name: 'bar2',
+                        type: 'bar',
+                        barWidth: 12,
+                        stack: 'one',
+                        emphasis: emphasisStyle,
+                        data: data2,
+                        itemStyle: {
+                            normal: {
+                                color: "rgba(162, 191, 255,0.7)"
+                            }
+                        }
+                    },
+                    {
+                        name: 'bar3',
+                        type: 'bar',
+                        barWidth: 12,
+                        stack: 'two',
+                        emphasis: emphasisStyle,
+                        data: data3,
+                        itemStyle: {
+                            normal: {
+                                color: "rgba(87, 140, 255,0.7)"
+                            }
+                        }
+                    },
+                    {
+                        name: 'bar4',
+                        type: 'bar',
+                        barWidth: 12,
+                        stack: 'two',
+                        emphasis: emphasisStyle,
+                        data: data4,
+                        itemStyle: {
+                            normal: {
+                                color: "rgba(3, 82, 254,0.7)"
+                            }
+                        }
+                    }
+                ]
+            };
+
+            myChart.on('brushSelected', renderBrushed);
+
+            function renderBrushed(params) {
+                var brushed = [];
+                var brushComponent = params.batch[0];
+
+                // for (var sIdx = 0; sIdx < brushComponent.selected.length; sIdx++) {
+                //     var rawIndices = brushComponent.selected[sIdx].dataIndex;
+                //     brushed.push('[Series ' + sIdx + '] ' + rawIndices.join(', '));
+                // }
+
+                myChart.setOption({
+                    title: {
+                        backgroundColor: '#333',
+                        //text: 'SELECTED DATA INDICES: \n' + brushed.join('\n'),
+                        bottom: 0,
+                        right: 0,
+                        width: 100,
+                        textStyle: {
+                            fontSize: 12,
+                            color: '#fff'
+                        }
+                    }
+                });
+            }
+            if (option && typeof option === "object") {
+                myChart.setOption(option, true);
+                window.onresize = function(){
+                    myChart.resize();
+                }
+            }
+        }
+    });
+  </script>
+</head>
+<body>
+    <div id='base'>
+        <div id="viewDiv">
+            <div id="barChart" style="height: 50%;width: 35%;"></div>
+        </div>
+    </div>  
+</body>
+</html> 

@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<script type="text/javascript" defer="defer"  
+	src="./example.js"></script>
+	<style>
+		.page-header {
+			height: 112px;
+			overflow: hidden;
+			background-image: url(./images/bg.jpg);
+			background-repeat-x: repeat;
+		}
+		.page-header .wrap {
+		    position: relative;
+		    z-index: 0;
+		}
+		.wrap {
+		    width: 990px;
+		    margin: 0 auto;
+		}
+		.clearfix {
+		    zoom: 1;
+		}
+		.page-header .headbox {
+		    height: 5px;
+		    background: #00c896;
+		}
+		.page-header .bg {
+		    width: 743px;
+		    height: 112px;
+		    position: absolute;
+		    left: 247px;
+		    top: 0;
+		    z-index: -1;
+		    background: url(./images/bg2.jpg) no-repeat;
+		}
+		.page-header .language {
+		    padding-top: 10px;
+		    height: 18px;
+		}
+		.clearfix:after {
+		    content: "";
+		    display: block;
+		    height: 0;
+		    clear: both;
+		    visibility: hidden;
+		}
+		.right {
+		    float: right;
+		}
+		.left {
+		    float: left;
+		}
+		.page-header .language span {
+		    font-size: 13px;
+		    color: #777777;
+		}
+		.page-nav {
+			background: #00c896;
+		}
+		.page-nav {
+		    height: 41px;
+		    border-bottom: 1px solid #FFFFFF;
+		    position: relative;
+		    z-index: 100;
+		}
+		.page-navs {
+			height: 100%;
+		}
+		.wrap {
+			width: 990px;
+			margin: 0 auto;
+		}
+		.page-navs li {
+		    position: relative;
+		    display: block;
+		    float: left;
+		    /* width: 99px; */
+		    width: 86px;
+		    height: 100%;
+		    text-align: center;
+		}
+		.page-navs a {
+		    font-size: 15px;
+		    color: white;
+		    line-height: 41px;
+		}
+		.page-navs-inner {
+		    /*-webkit-animation: slideDown ease-out 0.2s;
+		    -moz-animation: slideDown ease-out 0.2s;*/
+		    animation: slideDown ease-out 0.2s;
+		    position: absolute;
+		    z-index: 199;
+		    padding: 0;
+		    top: 0px;
+		    left: 0;
+		    opacity: .8;
+		    display: none;
+		}
+		.page-navs-inner li:first-child a {
+		    font-size: 15px;
+		    line-height: 41px;
+		}
+		.page-navs-inner li a {
+		    cursor: pointer;
+		}
+		.banner {
+		    height: 310px;
+		    background: #f3f3f3;
+		}
+		.banner .banner_inner, #banner_slider {
+		    position: relative;
+		    height: 310px;
+		    right: 0px;
+		}
+		.banner .wrap {
+		    position: relative;
+		}
+		.banner img {
+		    /*width: 990px;*/
+		    height: 310px;
+		    right: 0px;
+		}
+		.titlestyle53611 {
+		    line-height: 220%;
+		    color: #222222;
+		    font-size: 9pt;
+		    font-weight: bold;
+		    text-decoration: none;
+		}
+		.may-iframe {
+		    width: 692px;
+		    float: left;
+		}
+		.news {
+		    height: 207px;
+		}
+		.spring .info-box .title {
+		    /*border-bottom: 1px solid #00c896;*/
+		}
+		.info-box .title {
+		    height: 46px;
+		    margin-bottom: 13px;
+		    overflow: hidden;
+		    zoom: 1;
+		    position: relative;
+		    border-bottom: 1px solid #00c896;
+		}
+		.info-box .title h1 {
+		    font: normal normal 18px '微软雅黑', '\5FAE\8F6F\96C5\9ED1', 'Microsoft YaHei';
+		    float: left;
+		    margin-top: 14px;
+		}
+		.info-box .title a {
+		    color: #000000;
+		   /* -webkit-transition: color .2s;
+		    -moz-transition: color .2s;*/
+		    transition: color .2s;
+		}
+		.info-box .title .more {
+		    font-size: 13px;
+		    font-weight: normal;
+		    color: #b2b2b2;
+		    line-height: 60px;
+		    float: right;
+		}
+		.pic__detail {
+		    margin-left: 194px;
+		}
+		.pic__detail p {
+		    color: #878787;
+		    margin: 0;
+		    line-height: 24px;
+		}
+		.list-box .news {
+		    display: block;
+		    height: 24px;
+		    text-indent: 10px;
+		    border-bottom: 1px solid #dcdcdc;
+		    background: url(./images/dot.jpg) center left no-repeat;
+		}
+		#news .news .words {
+		    width: 220px !important;
+		}
+		.list-box .news .words {
+		    line-height: 24px;
+		    display: block;
+		    height: 100%;
+		    width: 190px;
+		    overflow: hidden;
+		    color: #666666;
+		    float: left;
+		    -webkit-transition: color .2s;
+		    -moz-transition: color .2s;
+		    transition: color .2s;
+		}
+		.list-box .news .time {
+		    line-height: 24px;
+		    color: #b2b2b2;
+		    float: right;
+		}
+		.links {
+		    margin-right: 5px;
+		    position: relative;
+		    z-index: 1000;
+		}
+		.spring .select:hover {
+		    background: #008264;
+		}
+		.links .select._s1 {
+		    margin: 0;
+		}
+		.spring ._s1 {
+		    background: #00c896;
+		}
+		.links .select {
+		    display: block;
+		    width: 74px;
+		    height: 22px;
+		    text-align: center;
+		    margin-top: 12px;
+		    position: relative;
+		    color: #bdf1e4;
+		    line-height: 22px;
+		    font: normal normal 14px '微软雅黑', '\5FAE\8F6F\96C5\9ED1', 'Microsoft YaHei';
+		    cursor: pointer;
+		}
+		.links .select ul {
+		    list-style: none;
+		    background: #00c896;
+		    margin: 0;
+		    opacity: .9;
+		    position: absolute;
+		    z-index: 1001;
+		    zoom: 1;
+		    left: 0;
+		    width: 220px;
+		    display: none;
+		    left: 74px;
+		}
+		.leftbox {
+		    width: 352px;
+		}
+		.s-links {
+		    text-align: left;
+		    position: relative;
+		    top: -3px;
+		}
+		.s-links tr {
+		    height: 22px;
+		}
+		.rightbox {
+		    width: 298px;
+		}
+		.ads {
+		    position: relative;
+		    margin-top: 49px;
+		    width: 261px;
+		    height: 163px;
+		    z-index: 10009;
+		}
+		.page-footer {
+		    height: 80px;
+		    padding: 15px 0;
+		    text-align: center;
+		    margin-top: 35px;
+		}
+		.page-footer span {
+		    font-size: 13px;
+		    color: #ffffff;
+		}
+		a.imagechangenews_pnode:link, a.imagechangenews_pnode:visited {
+		    text-decoration: none;
+		    color: #fff;
+		    line-height: 15px;
+		    font-size: 15px;
+		    font-family: 宋体;
+		    background-color: #666;
+		}
+		.imagechangenews_pnode {
+		    padding: 1px 7px;
+		    border-left: #cccccc 1px solid;
+		}
+		table {
+		    display: table;
+		    border-collapse: separate;
+		    border-spacing: 2px;
+		    border-color: grey;
+		}
+		tbody {
+		    display: table-row-group;
+		    vertical-align: middle;
+		    border-color: inherit;
+		}
+		p {
+		    display: block;
+		    -webkit-margin-before: 1em;
+		    -webkit-margin-after: 1em;
+		    -webkit-margin-start: 0px;
+		    -webkit-margin-end: 0px;
+		}
+		table {
+		    display: table;
+		    border-collapse: separate;
+		    border-spacing: 2px;
+		    border-color: grey;
+		}
+		ul {
+			padding: 0;
+			-webkit-margin-before: 1em;
+		    -webkit-margin-after: 1em;
+		    -webkit-margin-start: 0px;
+		    -webkit-margin-end: 0px;
+		    -webkit-padding-start: 40px;
+		}
+		a {
+		    color: #666666;
+		    text-decoration: none;
+		}
+		body {
+			font-size: 13px;
+		    font-family: 宋体, 宋体, SimSun;
+		    margin: 0px;
+		}
+	</style>
+</head>
+<body style="zoom: 1;">
+	<header class="page-header">
+		<div class="wrap clearfix">
+			<div class="bg"></div>
+			<div class="headbox"></div>
+			<div class="language clearfix">
+				<div class="right">
+					<a href="http://english.cqupt.edu.cn">English</a>
+					<span>|</span>
+					<a href="http://korea.cqupt.edu.cn">Korea</a>
+				</div>
+			</div>
+			<div>
+				<img src="./images/logo.jpg" alt="logo" class="left">
+				<img src="./images/motto.jpg" alt="motto" class="right" style="margin: 20px 40px 0 0;">
+			</div>
+		</div>
+	</header>
+	<nav class="page-nav">
+		<ul class="wrap page-navs">
+			<li>
+				<a href="">首页</a>
+			</li>
+			<li>
+				<a href="">学校概况</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">学校概况</a>
+					</li>
+					<li class="title">
+						<a href="">学校简介</a>
+					</li>
+					<li class="title">
+						<a href="">学校章程</a>
+					</li>
+					<li class="title">
+						<a href="">学校领导</a>
+					</li>
+					<li class="title">
+						<a href="">历史沿革</a>
+					</li>
+					<li class="title">
+						<a href="">学院导航</a>
+					</li>
+					<li class="title">
+						<a href="">管理机构</a>
+					</li>
+					<li class="title">
+						<a href="">重邮校友</a>
+					</li>
+					<li class="title">
+						<a href="">虚拟校园</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">师资队伍</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">师资队伍</a>
+					</li>
+					<li class="title">
+						<a href="">师资概况</a> 
+					</li>
+					<li class="title">
+						<a href="">部分师资</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">学科建设</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">学科建设</a>
+					</li>
+					<li class="title">
+						<a href="">简介</a>
+					</li>
+					<li class="title">
+						<a href="">硕博学科...</a>
+					</li>
+					<li class="title">
+						<a href="">省部级重点学科</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">科学研究</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">科学研究</a>
+					</li>
+					<li class="title">
+						<a href="">科研机构</a>
+					</li>
+					<li class="title">
+						<a href="">科研成果</a>
+					</li>
+					<li class="title">
+						<a href="">学术刊物</a>
+					</li>
+					<li class="title">
+						<a href="">产学研</a>
+					</li>
+					<li class="title">
+						<a href="">社科在线</a>
+					</li>
+					<li class="title">
+						<a href="">科技在线</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">人才培养</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">人才培养</a>
+					</li>
+					<li class="title">
+						<a href="">本科教育</a>
+					</li>
+					<li class="title">
+						<a href="">研究生教育</a>
+					</li>
+					<li class="title">
+						<a href="">留学生教育</a>
+					</li>
+					<li class="title">
+						<a href="">继续教育</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">招生就业</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">招生就业</a>
+					</li>
+					<li class="title">
+						<a href="">招生信息</a>
+					</li>
+					<li class="title">
+						<a href="">就业信息</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">校园文化</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">校园文化</a>
+					</li>
+					<li class="title">
+						<a href="">学术讲座</a>
+					</li>
+					<li class="title">
+						<a href="">校园风光</a>
+					</li>
+					<li class="title">
+						<a href="">学生活动</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">合作交流</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">合作交流</a>
+					</li>
+					<li class="title">
+						<a href="">国内合作交流</a>
+					</li>
+					<li class="title">
+						<a href="">国际合作交流</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">公共服务</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">公共服务</a>
+					</li>
+					<li class="title">
+						<a href="">重邮校历</a>
+					</li>
+					<li class="title">
+						<a href="">办公电话</a>
+					</li>
+					<li class="title">
+						<a href="">校园地图</a>
+					</li>
+					<li class="title">
+						<a href="">档案信息</a>
+					</li>
+					<li class="title">
+						<a href="">网络服务</a>
+					</li>
+					<li class="title">
+						<a href="">校庆</a>
+					</li>
+					<li class="title">
+						<a href="">校庆徽标</a>
+					</li>
+					<li class="title">
+						<a href="">新年献词</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				<a href="">疫情专题</a>
+				<ul class="page-navs-inner">
+					<li>
+						<a href="">疫情专题</a>
+					</li>
+					<li class="title">
+						<a href="">权威信息</a>
+					</li>
+					<li class="title">
+						<a href="">重邮动态</a>
+					</li>
+					<li class="title">
+						<a href="">防疫知识</a>
+					</li>
+				</ul>
+			</li>
+		</ul>
+	</nav>
+	<div class="banner">
+		<div class="wrap">
+			<div class="banner_inner">
+				<table cellspacing="0" cellpadding="0" border="0" style="padding:0px margin:0px; border:0px">
+	    			<tbody>
+	    				<tr>
+	    					<td>
+				        		<div style="overflow: hidden;height:308px;width:990px">
+				            		<div id="u_u1_div" align="center" style="padding:0px;margin:0px;border:0px solid black;background-color:#000000;FILTER: progid:DXImageTransform.Microsoft.RevealTrans (duration=2.0,transition=23);height:308px;width:990px">
+				                		<div id="u_u1_imgdiv" style="padding:0px;border:0px;"><a id="u_u1_url" target="_blank" href="index.htm"><img id="u_u1_pic" border="0" width="990" height="308" src="https://www.cqupt.edu.cn/__local/2/93/54/A0B6EB59ED4ABC0651DDE6B4D20_0B35B6AC_155EC.jpg"></a></div>
+				            		</div>
+				        		</div>
+				        	</td>
+				        </tr>
+	  				</tbody>
+	  			</table>
+	  			<img src="./images/silder_bg.png" alt="bg" onclick="javascript:location.href='http://www.cqupt.edu.cn/yqzt.htm'" style="position: absolute;right: 0;bottom: 0;width: 100.2%;z-index: 10">
+			</div>
+		</div>
+	</div>
+	<div class="wrap clearfix">
+		<div class="may-iframe left">
+			<section class="news">
+				<div class="info-box">
+					<div class="title">
+						<h1>
+							<a href="">重邮新闻</a>
+						</h1>
+						<a href="" class="more">more</a>
+					</div>
+					<div class="content">
+					<div id="news_pic" class="pic left" style="width: 395px;">
+						<a href=""><img src="http://xwzx.cqupt.edu.cn/upload/image/202001/1578901833830019563.jpg?r183x137" class="pic__photo left" target="_blank">
+						</a>
+						<div class="pic__detail">
+							<p>
+								<a href="http://xwzx.cqupt.edu.cn/cqupt_xwzx/news.jsp?id=7764342AD2G40HM5" target="_blank">学校召开“不忘初心、牢记使命”主题教育总结会
+								</a>
+							</p>
+							<p style="\&quot;text-indent:28px\&quot;"><span style="\&quot;font-family:宋体\&quot;">本网讯（组织部供稿 编审 敖永春）1月13日上午，学校召开“不忘初心、牢记使命”主题教育总结会，对学校主题教育开展情</span>
+							</p>
+						</div>
+					</div>
+					<div class="list-box left" id="news" style="width: 267px;margin-left: 26px">
+						<div class="news">
+							<a href="http://xwzx.cqupt.edu.cn/cqupt_xwzx/news.jsp?id=810892N21IL1BP63" target="_blank" title="我校位列2019年全国普通高校学科竞赛排名第44位、2015-2019年全国排名第45位">
+								<span class="words">我校位列2019年全国普通高校学...</span>
+								<span class="time">02-22</span>
+							</a>
+						</div>
+						<div class="news">
+							<a href="http://xwzx.cqupt.edu.cn/cqupt_xwzx/news.jsp?id=J81R030KX654R408" target="_blank" title="学校召开新学期开学干部视频工作会">
+								<span class="words">学校召开新学期开学干部视频工...</span>
+								<span class="time">02-21</span>
+							</a>
+						</div>
+						<div class="news">
+							<a href="http://xwzx.cqupt.edu.cn/cqupt_xwzx/news.jsp?id=8SR103023M88Y0D0" target="_blank" title="重庆邮电大学医院拍摄“新冠肺炎疑似病例患者接诊演练”宣传视频">
+								<span class="words">重庆邮电大学医院拍摄“新冠肺...</span>
+								<span class="time">02-21</span>
+							</a>
+						</div>
+						<div class="news">
+							<a href="http://xwzx.cqupt.edu.cn/cqupt_xwzx/news.jsp?id=ROW8KO0911207273" target="_blank" title="校党委书记、校长李林深入一线检查指导疫情防控工作">
+								<span class="words">校党委书记、校长李林深入一线...</span>
+								<span class="time">02-20</span>
+							</a>
+						</div>
+						<div class="news">
+							<a href="http://xwzx.cqupt.edu.cn/cqupt_xwzx/news.jsp?id=80867711SRPMO838" target="_blank" title="我校师生以“艺”战“疫”" 创作歌曲为武汉加油="">
+								<span class="words">我校师生以“艺”战“疫”  创...</span>
+								<span class="time">02-19</span>
+							</a>
+						</div>
+						<div class="news">
+							<a href="http://xwzx.cqupt.edu.cn/cqupt_xwzx/news.jsp?id=8E08KK71F608R320" target="_blank" title="铭记习总书记嘱托" 助力武汉抗疫献爱心="">
+								<span class="words">铭记习总书记嘱托  助力武汉抗...</span>
+								<span class="time">02-18</span>
+							</a>
+						</div>
+					</div>
+				</div>
+				</div>
+			</section>
+			<section style="margin-top: 5px">
+				<div class="info-box leftbox left">
+					<div class="title" style="margin-bottom: 16px;">
+                        <h1>快速链接</h1>
+                        <a href="#" class="more">more</a>
+                    </div>
+                    <div class="content">
+                        <nav class="nav"></nav>
+                            <div style="display:inline">
+                                <div class="left links">
+                                    <div class="_s1 select" style="background: #00c896;">学院导航
+                                        <ul data-top="370">
+                                            <li><a href="http://scie.cqupt.edu.cn/" target="_blank">通信与信息工程学院</a></li>
+                                            <li><a href="http://cs.cqupt.edu.cn/" target="_blank">计算机科学与技术学院</a></li>
+                                            <li><a href="http://ac.cqupt.edu.cn/" target="_blank">自动化学院</a></li>
+                                            <li><a href="http://same.cqupt.edu.cn/" target="_blank">先进制造工程学院</a></li>
+                                            <li><a href="http://ee.cqupt.edu.cn/" target="_blank">光电工程学院/重庆国际半导体学院</a></li>
+                                            <li><a href="http://software.cqupt.edu.cn/" target="_blank">软件工程学院</a></li>
+                                            <li><a href="http://swxy.cqupt.edu.cn/" target="_blank">生物信息学院</a></li>
+                                            <li><a href="http://lxy.cqupt.edu.cn/" target="_blank">理学院</a></li>
+                                            <li><a href="http://jgxy.cqupt.edu.cn/" target="_blank">经济管理学院/现代邮政学院</a></li>
+        
+                                            <li><a href="http://cmys.cqupt.edu.cn/" target="_blank">传媒艺术学院</a></li>
+                                            <li><a href="http://cfl.cqupt.edu.cn/" target="_blank">外国语学院</a></li>
+                                            <li><a href="http://international.cqupt.edu.cn/" target="_blank"> 国际学院</a></li>
+                                            <li><a href="http://sl.cqupt.edu.cn/" target="_blank">网络空间安全与信息法学院</a></li>
+                                            <li><a href="http://marx.cqupt.edu.cn" target="_blank">马克思主义学院</a></li>
+                                            <li><a href="http://tyxy.cqupt.edu.cn/" target="_blank">体育学院</a></li>
+                                            
+                                            <li><a href="http://cjy.cqupt.edu.cn/" target="_blank">创新创业教育学院/继续教育学院</a></li>
+                                            <li><a href="http://www.cqupt.edu.cn/" target="_blank">国防信息工程技术研究院</a></li>
+                                            <li><a href="http://eini.cqupt.edu.cn/" target="_blank">电子信息与网络工程研究院</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="_s1-nav"></div>
+                                    <div class="_s2 select" id="_s2" style="background: #00c896;">部门机构
+                                        <ul data-top="553">
+                                            <li><a href="http://office.cqupt.edu.cn/" target="_blank">党办/校办</a></li>
+                                            <li><a href="http://dwzzb.cqupt.edu.cn/" target="_blank">组织部/统战部</a></li>
+                                            <li><a href="http://xcb.cqupt.edu.cn/" target="_blank">宣传部/网络工作部</a></li>
+                                            <li><a href="http://xsc.cqupt.edu.cn/" target="_blank">学工部/学生处</a></li>
+                                            <li><a href="http://jiwei.cqupt.edu.cn/" target="_blank">纪委办/监察处</a></li>
+                        
+                                            <li><a href="http://gh.cqupt.edu.cn/" target="_blank">工会</a></li>
+                                            <li><a href="http://tuanwei.cqupt.edu.cn" target="_blank">团委</a></li>
+                                            <li><a href="http://jwc.cqupt.edu.cn" target="_blank">教务处</a></li>
+                                            <li><a href="http://yjs.cqupt.edu.cn/" target="_blank">研究生院/研究生工作部</a></li>
+                                            <li><a href="http://zjc.cqupt.edu.cn/" target="_blank">招就处</a></li>
+                        
+                                            <li><a href="http://kjc.cqupt.edu.cn/" target="_blank">科技处</a></li>
+                                            <li><a href="http://skc.cqupt.edu.cn/" target="_blank">社科处</a></li>
+                                            <li><a href="http://cxy.cqupt.edu.cn/" target="_blank">产学研办</a></li>
+                                            <li><a href="http://gjc.cqupt.edu.cn/" target="_blank">国际处/港澳台办</a></li>
+                                            <li><a href="http://rsc.cqupt.edu.cn/" target="_blank">教师工作部/人事处</a></li>
+                        
+                                            <li><a href="http://cwzx.cqupt.edu.cn:8080/" target="_blank">财务处</a></li>
+                                            <li><a href="http://zcgl.cqupt.edu.cn/sfw/e?page=cms.index" target="_blank">资产处</a></li>
+                                            <li><a href="http://jjc.cqupt.edu.cn/" target="_blank">基建后勤处</a></li>
+                                            <li><a href="http://bwc.cqupt.edu.cn/" target="_blank">保卫处/武装部</a></li>
+                                            <li><a href="http://sjc.cqupt.edu.cn/" target="_blank">审计处</a></li>
+                        
+                                            <li><a href="http://ltxc.cqupt.edu.cn/" target="_blank">离退休工作处</a></li>
+                                            <li><a href="http://jyfzyjy.cqupt.edu.cn/" target="_blank">教育发展研究院</a></li>
+                                            <li><a href="http://xxb.cqupt.edu.cn/" target="_blank">信息化办/信息中心</a></li>
+                                            <li><a href="http://tsg.cqupt.edu.cn/" target="_blank">图书馆</a></li>
+                                            <li><a href="http://journal.cqupt.edu.cn/" target="_blank">期刊社</a></li>
+                                            <li><a href="http://dag.cqupt.edu.cn/" target="_blank">档案馆</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="_s3 select" style="background: #00c896;">友情链接
+                                        <ul data-top="185">
+                                            <li><a href="http://www.miit.gov.cn/" target="_blank">工业和信息化部</a></li>
+                                            <li><a href="http://www.moe.edu.cn/" target="_blank"> 教育部</a></li>
+                                            <li><a href="http://www.chinapost.gov.cn/" target="_blank">国家邮政局</a></li>
+                                            <li><a href="http://www.cq.gov.cn/" target="_blank">重庆市人民政府</a></li>
+                                            <li><a href="http://www.cqjw.gov.cn/site/html/cqjwportal/portal/index/index.htm" target="_blank"> 重庆市教委 </a></li>
+                                            <li><a href="http://www.bupt.edu.cn/" target="_blank">北京邮电大学</a></li>
+                                            <li><a href="http://www.njupt.edu.cn/" target="_blank">南京邮电大学</a></li>
+                                            <li><a href="http://www.xiyou.edu.cn/" target="_blank">西安邮电大学</a></li>
+                                            <li><a href="http://www.cqyti.com/" target="_blank">移通学院 </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                                
+                                <table class="s-links left">
+                                    <tbody><tr>
+                                        <td width="55px"><a href="http://ehall.cqupt.edu.cn/new/index.html" target="_blank">服务大厅</a></td>
+                                        <td width="58px"><a href="http://xxgk.cqupt.edu.cn" target="_blank">信息公开</a></td>
+                                        <td width="56px"><a href="http://jwzx.cqupt.edu.cn/" target="_blank">教务在线</a></td>
+                                        <td width="83px"><a href="http://yjs.cqupt.edu.cn/" target="_blank" style="letter-spacing: 3px;">研究生院</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="http://cyhq.cqupt.edu.cn/" target="_blank">后勤服务</a></td>
+                                        <td><a href="http://tsg.cqupt.edu.cn/" target="_blank" style="letter-spacing: 4.2px;">图书馆</a></td>
+                                        <td><a href="http://www.cqupt.edu.cn/cqupt/kexue_jg.shtml" target="_blank">科学研究</a></td>
+                                        <td><a href="http://journal.cqupt.edu.cn/" target="_blank">学术期刊</a></td>
+                                        
+                                    </tr>
+                                    <tr>
+                                        <td><a href="http://hongyan.cqupt.edu.cn/" target="_blank">红岩网校</a></td>
+                                        <td><a href="http://xdh.cqupt.edu.cn" target="_blank" style="letter-spacing: 4.5px;">校董会</a></td>
+                                        <td><a href="http://jyjjh.cqupt.edu.cn/jjh/web/index.jsp" target="_blank" style="letter-spacing: 4.2px;">基金会</a></td>
+                                        <td><a href="http://xylyh.cqupt.edu.cn/" target="_blank" style="letter-spacing: 3px;">校友联谊会</a></td>
+                                    </tr>
+                                    <tr>
+                                        <td><a href="http://faculty.cqupt.edu.cn/" target="_blank">教师主页</a></td>
+                                        <td><a href="https://mail.cqupt.edu.cn/" target="_blank">邮件系统</a></td>
+                                        <td><a href="http://rsc.cqupt.edu.cn/" target="_blank">招贤纳士</a></td>
+                                        <td><a href="http://gis.cqupt.edu.cn" target="_blank" style="letter-spacing: 3px;">可视化校园</a></td>    
+                                    </tr>
+                                </tbody></table>
+                            </div>
+                    </div>
+				</div>
+                <div class="info-box left m135 rightbox" style="margin-left: 35px;">
+                	<div class="title">
+                		<h1>
+                			<a href="index/xsjz.htm" data-left="36" data-show="academic" target="">学术讲座</a>
+                			<span class="divider">&nbsp;|&nbsp;</span>
+                			<a href="index/zbxx.htm" data-left="120" data-show="schoolInfo" target="">招标信息</a>
+                		</h1>
+                		<a href="" class="more" target>more</a>
+                		<div class="triangle" style="left: 120px"></div>
+                	</div>
+                	<div class="content">
+                		<div class="list-box hide" id="academic">
+                			<div class="news">
+								<a href="info/1092/2037.htm" title="计算机科学与技术一流学科高峰论坛…">
+									<span class="words">计算机科学与技术一流学科高峰论坛…</span>
+									<span class="time">01-19</span>
+								</a>
+							</div>
+                			<div class="news">
+								<a href="info/1092/1811.htm" title="经济管理学院学术活动（2020年第 1…">
+									<span class="words">经济管理学院学术活动（2020年第 1…</span>
+									<span class="time">01-08</span>
+								</a>
+							</div>
+							<div class="news">
+								<a href="info/1092/1783.htm" title="计算机科学与技术一流学科高峰论坛…">
+									<span class="words">计算机科学与技术一流学科高峰论坛…</span>
+									<span class="time">01-03</span>
+								</a>
+							</div>
+							<div class="news">
+								<a href="info/1092/1784.htm" title="计算机科学与技术一流学科高峰论坛…">
+									<span class="words">计算机科学与技术一流学科高峰论坛…</span>
+									<span class="time">01-03</span>
+								</a>
+							</div>
+                		</div>
+                	</div>
+                </div>    
+			</section>
+		</div>
+		<aside class="rightside right">
+			<div class="ads">
+				<table cellspacing="0" cellpadding="0" border="0" style="padding:0px margin:0px; border:0px">
+					<tbody>
+						<tr>
+							<td>
+						        <div style="OVERFLOW: hidden;height:161px;width:261px">
+						            <div id="u_u5_div" align="center" style="padding:0px;margin:0px;border:0px solid black;background-color:#000000;FILTER: progid:DXImageTransform.Microsoft.RevealTrans (duration=2.0,transition=23);height:161px;width:261px">
+						                <div id="u_u5_imgdiv" style="padding:0px;border:0px;">
+						                	<a id="u_u5_url" target="_blank" href="http://www.cqupt.edu.cn/yqzt.htm"><img id="u_u5_pic" border="0" width="261" height="161" src="https://www.cqupt.edu.cn/__local/2/C7/B0/B2AB22A87C1E50E1CFAD458D2E4_FB182E9D_4695.jpg"></a>
+						                </div>
+						            </div>
+						            <div style="filter:alpha(style=1,opacity=10,finishOpacity=80);width:261px;height:19px;text-align:right;top:-19px;position:relative;padding:0px;margin:0px;border:0px;">
+										<a href="javascript:u_u5_icn.changeimg(0)" ;="" id="u_u5_selectNode0" class="imagechangenews_fnode" target="_self">1</a><a href="javascript:u_u5_icn.changeimg(1)" ;="" id="u_u5_selectNode1" class="imagechangenews_pnode" target="_self">2</a><a href="javascript:u_u5_icn.changeimg(2)" ;="" id="u_u5_selectNode2" class="imagechangenews_pnode" target="_self">3</a><a href="javascript:u_u5_icn.changeimg(3)" ;="" id="u_u5_selectNode3" class="imagechangenews_pnode" target="_self">4</a><a href="javascript:u_u5_icn.changeimg(4)" ;="" id="u_u5_selectNode4" class="imagechangenews_pnode" target="_self">5</a><a href="javascript:u_u5_icn.changeimg(5)" ;="" id="u_u5_selectNode5" class="imagechangenews_pnode" target="_self">6</a>
+						            </div>
+						        </div>
+						    </td>
+						</tr>	   
+					</tbody>
+				</table>
+			</div>
+			<div class="info-box" style="width: 260px;margin-top:16px;">
+				<div class="title">
+					<h1><a href="index/xwgg.htm" target="">校务公告</a></h1>
+					<a href="index/xwgg.htm" class="more" target="">more</a>
+				</div>
+                <div class="content">
+                	<div class="list-box" id="notice">	
+	                	<div class="news">
+							<a href="info/1091/2101.htm" title="重庆邮电大学2020年部门预算情...">
+								<span class="words" style="width:210px!important">重庆邮电大学2020年部门预算情...</span>
+								<span class="time" style="float:left!important">02-21</span>
+							</a>
+						</div>
+						<div class="news">
+							<a href="info/1091/1851.htm" title="重庆邮电大学2018-2019学年本科...">
+								<span class="words" style="width:210px!important">重庆邮电大学2018-2019学年本科...</span>
+								<span class="time" style="float:left!important">01-15</span>
+							</a>
+						</div>
+						<div class="news">
+							<a href="info/1091/1160.htm" title="重庆邮电大学2018年部门决算">
+								<span class="words" style="width:210px!important">重庆邮电大学2018年部门决算</span>
+								<span class="time" style="float:left!important">08-29</span>
+							</a>
+						</div>
+						<div class="news">
+							<a href="info/1091/1081.htm" title="重庆邮电大学声明">
+								<span class="words" style="width:210px!important">重庆邮电大学声明</span>
+								<span class="time" style="float:left!important">06-03</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</aside>
+	</div>
+	<footer class="page-footer" style="background: #00c896;">
+		<div style="margin:0 auto;width:620px;height:80px;">
+			<div style="float:left;margin-top:10px;">
+				<span>版权所有 | 重庆邮电大学 | 重庆市南岸区崇文路2号 | 400065 |<a href="http://www.beian.miit.gov.cn" target="_blank" style="color:white"> 渝ICP备：17002788号-1</a></span> 
+				<div style="width:300px;margin:0 auto; padding:20px 0;">
+					<a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=50010802001309" style="display:inline-block;text-decoration:none;height:20px;line-height:20px;">
+					    <img src="./images/beian.jpg" style="float:left;">
+					    <p style="float:left;height:20px;line-height:20px;margin: 0px 0px 0px 5px; color:#ffffff;">渝公网安备 50010802001309号</p>
+					</a>
+				</div>
+			</div>
+			<div style="float:left">
+				<span id="_ideConac">
+				    <a target="_blank" href="http://bszs.conac.cn/sitename?method=show&amp;id=350F2D90137E424BE053022819AC0266">
+					    <img id="imgConac" vspace="0" hspace="0" border="0" src="./images/blue.png" data-bd-imgshare-binded="1">
+				    </a>
+				</span>
+			</div>
+		</div>
+	</footer>
+</body>
+</html>
